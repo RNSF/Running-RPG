@@ -11,15 +11,14 @@ class LoadingPage extends StatefulWidget {
 }
 
 class _LoadingPageState extends State<LoadingPage> {
-  void loadSaveData() async {
-    print("DATA LOADING");
-    await setUpLocator();
+  void loadSaveData(context) async {
+    await setUpLocator(context);
     Navigator.pushReplacementNamed(context, "/navigation_master");
   }
 
   @override
   Widget build(BuildContext context) {
-    loadSaveData();
+    loadSaveData(context);
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(

@@ -113,6 +113,7 @@ class HexTileMap {
         inRangeCities[tile.structure as HexTileCity] = distance;
       }
     });
+    print("IN RANGE CITIES: $inRangeCities");
 
     return inRangeCities;
   }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:running_game/pages/map_page/view_model.dart';
 import 'package:running_game/pages/map_page/views/building_overlay.dart';
+import 'package:running_game/pages/map_page/views/event_overlay.dart';
 import 'package:running_game/pages/map_page/views/loading_overlay.dart';
 import 'package:running_game/pages/map_page/views/recording_overlay.dart';
 import 'package:running_game/pages/map_page/views/standard_overlay.dart';
@@ -44,6 +45,7 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin  {
               case MapState.recording: return RecordingOverlay(viewModel: viewModel);
               case MapState.loading: return LoadingOverlay(viewModel: viewModel);
               case MapState.structureView : return StructureOverlay(viewModel: viewModel);
+              case MapState.eventOverview : return EventOverlay(viewModel: viewModel);
             }
             return Container();
           }

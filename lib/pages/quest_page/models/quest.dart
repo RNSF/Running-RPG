@@ -8,11 +8,13 @@ import 'package:running_game/pages/quest_page/models/quest_location.dart';
 
 import '../../../map/components/hex_tile/hex_tile_type.dart';
 import '../../../map/components/hex_tile/structures/city_structure.dart';
+import '../../map_page/travel_event.dart';
 
 part "quest.g.dart";
 
 enum QuestState{
   main,
+  destinationReached,
   comeBack,
   rewardPending,
 }
@@ -27,12 +29,13 @@ class Quest {
   final QuestGiver questGiver;
   final Map<QuestState, String> descriptions;
   final String title;
+  final DateTime creationDate;
   var reachedDestinations = <QuestLocation>[];
   var state = QuestState.main;
   int? localId;
   DateTime? startTime;
 
-  Quest({this.destinations = const [], this.timeLimit = const Duration(days: 1), this.returnLocation, this.xpReward = 300, this.questGiver = const QuestGiver(), this.descriptions = const {}, this.title = "Unnamed Quest", this.localId});
+  Quest({required this.creationDate, this.destinations = const [], this.timeLimit = const Duration(days: 1), this.returnLocation, this.xpReward = 300, this.questGiver = const QuestGiver(), this.descriptions = const {}, this.title = "Unnamed Quest", this.localId});
 
   factory Quest.fromJson(Map json) => _$QuestFromJson(json);
   Map<String, dynamic> toJson() => _$QuestToJson(this);
@@ -54,26 +57,36 @@ class Quest {
     return unreached;
   }
 
+  List<QuestLocation> get questMarkerLocation {
+    var unreached = List<QuestLocation>.from(unreachedDestinations);
+    if(unreached.isEmpty && returnLocation != null){
+      unreached.add(returnLocation!);
+    } return unreached;
+  }
+
   String get description => descriptions[state] ?? "No description";
 
-  void coordinatesReached(Vector2 mapCoordinates) {
-    for(var destination in destinations){
+  TravelEvent? coordinatesReached(Vector2 mapCoordinates) {
+    TravelEvent? travelEvent;
+    for(var destination in unreachedDestinations){
       if(destination.mapCoordinates == mapCoordinates){
         reachedDestinations.add(destination);
+        travelEvent = TravelEvent(title: "Quest Updated!", description: descriptions[QuestState.destinationReached] ?? "No description :(");
       }
     }
     updateState(mapCoordinates);
+    return travelEvent; //return true if reached a destination for the quest
   }
 
   void updateState(Vector2 mapCoordinates) {
-    if(unreachedDestinations.isEmpty){
-      state = QuestState.comeBack;
+    if(unreachedDestinations.isNotEmpty){
+      state = QuestState.main;
     } else if(returnLocation == null) {
       state = QuestState.rewardPending;
     } else if(returnLocation!.mapCoordinates == mapCoordinates){
       state = QuestState.rewardPending;
     } else {
-      state = QuestState.main;
+      state = QuestState.comeBack;
     }
   }
 
@@ -88,10 +101,12 @@ class Quest {
     });
     QuestState.main.toString();
   }
+
 }
 
 
 class QuestType{
+  static const int cityMultiplier = 12;
   final int minDistance;
   final int maxDistance;
   final bool isCity;
@@ -102,9 +117,9 @@ class QuestType{
   final CityStats preferredCityStats;
   final int minTimeLimit;
   final int maxTimeLimit;
-  final double rarity;
-  final Map<HexTileType, List<String>> natureLocationNames;
-  final List<String> possibleDescriptions;
+  double rarity;
+  final List<String> natureLocationNames;
+  final Map<QuestState, List<String>> possibleDescriptions;
   final List<String> possibleTitles;
 
   late int destinationCount;
@@ -120,13 +135,38 @@ class QuestType{
     this.maxTimeLimit = 4,
     this.preferredCityStats = const CityStats(),
     this.rarity = 1.0,
-    this.natureLocationNames = const {},
+    this.natureLocationNames = const [],
     this.destinationTileTypes = const [],
-    this.possibleDescriptions = const [],
+    this.possibleDescriptions = const {},
     this.possibleTitles = const []
   }) {
     chooseDestinationCount();
   }
+
+  factory QuestType.fromJson(Map<String, dynamic> json) {
+    return QuestType(
+      minDistance: json["Min Distance"],
+      maxDistance: json["Max Distance"],
+      isCity: json["Is City"],
+      mustReturn:  json["Return"],
+      minDestinationCount: json["Min Destination Count"],
+      maxDestinationCount: json["Max Destination Count"],
+      minTimeLimit: json["Min Time"],
+      maxTimeLimit: json["Max Time"],
+      rarity: json["Rarity"],
+      natureLocationNames: <String>[... json["Nature Location Names"]],
+      destinationTileTypes: <HexTileType>[... <String>[... json["Destination Tile Types"]].map(StringToHexTileType)],
+      possibleDescriptions: <QuestState, List<String>>{
+        QuestState.main: [json["Start Text"]],
+        QuestState.rewardPending: [json["End Text"]],
+        QuestState.destinationReached: [json["Location Text"]],
+        QuestState.comeBack: [json["Return Text"]],
+      },
+      possibleTitles: <String>[... json["Titles"]],
+      preferredCityStats: CityStats.fromStringList(<String>[... json["Preferred City Stats"]]),
+    );
+  }
+
 
   double get estimatedMinDifficulty {
     return QuestDifficultyCalculator().calculateDifficulty(maxTimeLimit, minDistance*(destinationCount+(mustReturn ? 1.0 : 0.0)));
@@ -141,17 +181,22 @@ class QuestType{
     var maxDifficulty = estimatedMaxDifficulty;
     var avgDifficulty = (maxDifficulty + minDifficulty)/2;
     var difficultyRange = (maxDifficulty - minDifficulty);
-    return max(0, -(((difficulty-avgDifficulty)/(difficultyRange/2)).abs()) + 1 )*rarity;
+    return (difficulty <= maxDifficulty && difficulty >= minDifficulty) ? rarity : 0.0;
+    //return max(0, -(((difficulty-avgDifficulty)/(difficultyRange/2)).abs()) + 1 )*rarity*(isCity ? cityMultiplier : 1.0);
   }
 
   void chooseDestinationCount(){
     var rng = Random();
-    destinationCount = rng.nextInt(maxDestinationCount - minDestinationCount) + minDestinationCount;
+    destinationCount = rng.nextInt(maxDestinationCount - minDestinationCount + 1) + minDestinationCount;
   }
 
-  String generateDescription(){
-    possibleDescriptions.shuffle();
-    return possibleDescriptions.isNotEmpty ? possibleDescriptions[0] : "A very strange quest";
+  Map<QuestState, String> generateDescriptions(){
+    var descriptions = <QuestState, String>{};
+    possibleDescriptions.forEach((questState, options) {
+      options.shuffle();
+      descriptions[questState] = options.isNotEmpty ? options[0] : "A very strange quest";
+    });
+    return descriptions;
   }
 
   String generateTitle(){

@@ -8,15 +8,6 @@ import 'components/hex_tile/hex_tile_border.dart';
 import 'components/hex_tile_map.dart';
 
 class WorldMapData {
-  Future<Map> getJson(BuildContext context) async {
-    String data = await DefaultAssetBundle.of(context).loadString("assets/data/world_map.json");
-    final jsonResult = jsonDecode(data);
-    if(jsonResult is Map){
-      return jsonResult;
-    } else {
-      throw Exception("Failed to load map data");
-    }
-  }
 
   HexTileMap generateGroundFromJson(List json){
     List<List<HexTile>> hexMap = [];

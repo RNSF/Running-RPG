@@ -7,11 +7,12 @@ import '../hex_tile_map.dart';
 
 class PlayerPathLine extends Component {
   final HexTileMap hexTileMap;
+  bool isShadow;
   List<Vector2> path;
   Map<LineSegment, PathLineSegment> pathSegments = {};
   double _endPercentageHidden = 0.0;
 
-  PlayerPathLine({required this.path, required this.hexTileMap}){
+  PlayerPathLine({required this.path, required this.hexTileMap, this.isShadow = false}){
     generatePath(path);
   }
 
@@ -30,7 +31,7 @@ class PlayerPathLine extends Component {
       var tileA = hexTileMap.getTileFromVector2(lineSegment.pointA);
       var tileB = hexTileMap.getTileFromVector2(lineSegment.pointB);
       if(tileA != null && tileB != null){
-        var pathSegment = PathLineSegment(pointA: tileA.hexTop.absolutePosition, pointB: tileB.hexTop.absolutePosition);
+        var pathSegment = PathLineSegment(pointA: tileA.hexTop.absolutePosition, pointB: tileB.hexTop.absolutePosition, isShadow: isShadow);
         pathSegments[lineSegment] = pathSegment;
         add(pathSegment);
       }
@@ -117,14 +118,16 @@ class PathLineSegment extends PositionComponent{
   final pillsPerTile = 3;
   final pillSpacing = 35.0;
   final pillWidth = 35.0;
+  final bool isShadow;
   final coveredColor = Colors.red;
   final uncoveredColor = Colors.white;
+  final shadowColor = Color(0xff2B1E30);
   final Vector2 pointA;
   final Vector2 pointB;
   late double _percentageCovered;
   late double _percentageHidden;
 
-  PathLineSegment({required this.pointA, required this.pointB, double initialPercentageCovered = 0.0, double initialPercentageHidden = 0.0}){
+  PathLineSegment({required this.pointA, required this.pointB, this.isShadow = false, double initialPercentageCovered = 0.0, double initialPercentageHidden = 0.0}){
     _percentageCovered = initialPercentageCovered;
     _percentageHidden = initialPercentageHidden;
   }
@@ -169,6 +172,10 @@ class PathLineSegment extends PositionComponent{
       if((pillPosition - pointB).length/(pointA-pointB).length < 1-percentageCovered){
         color = uncoveredColor;
       }
+      if(isShadow){
+        color = shadowColor;
+        //pillPosition += Vector2(0.0, 10.0);
+      }
       //Generate if not hidden
       if(((pillPosition - pointB).length/(pointA-pointB).length < 1-percentageHidden)){
         generatePill(pillPosition+(pointA-pointB).normalized()*(pillLength*lengthMod-pillWidth)/2, pillAngle, pillLength*lengthMod, pillWidth, Paint()..color = color);
@@ -179,7 +186,7 @@ class PathLineSegment extends PositionComponent{
 
   void generatePill(Vector2 pillPosition, double pillAngle, double pillLength, double pillWidth, Paint pillPaint){
     add(PathPill(
-      pillPosition: pillPosition,
+      pillPosition: pillPosition + (isShadow ? Vector2(0.0, 12.0) : Vector2(0.0, 0.0)),
       pillAngle: pillAngle,
       pillLength: pillLength,
       pillWidth: pillWidth,

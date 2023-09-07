@@ -12,20 +12,16 @@ QuestHandlerModel _$QuestHandlerModelFromJson(Map json) => QuestHandlerModel(
                 MapEntry(int.parse(k as String), Quest.fromJson(e as Map)),
           ) ??
           const {},
-      rejectedQuests: (json['rejectedQuests'] as Map?)?.map(
-            (k, e) =>
-                MapEntry(int.parse(k as String), Quest.fromJson(e as Map)),
+      questBoards: (json['questBoards'] as Map?)?.map(
+            (k, e) => MapEntry(k as String, QuestBoard.fromJson(e as Map)),
           ) ??
           const {},
-    )..currentlyViewedQuest = json['currentlyViewedQuest'] == null
-        ? null
-        : Quest.fromJson(json['currentlyViewedQuest'] as Map);
+    );
 
 Map<String, dynamic> _$QuestHandlerModelToJson(QuestHandlerModel instance) =>
     <String, dynamic>{
       'activeQuests': instance.activeQuests
           .map((k, e) => MapEntry(k.toString(), e.toJson())),
-      'rejectedQuests': instance.rejectedQuests
-          .map((k, e) => MapEntry(k.toString(), e.toJson())),
-      'currentlyViewedQuest': instance.currentlyViewedQuest?.toJson(),
+      'questBoards':
+          instance.questBoards.map((k, e) => MapEntry(k, e.toJson())),
     };

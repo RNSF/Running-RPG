@@ -24,7 +24,7 @@ class NavigationMasterPage extends StatelessWidget {
                 const LocationPage(),
                 const CharacterPage(),
               ],
-              onPageChanged: viewModel.onPageChanged,
+              //onPageChanged: viewModel.onPageChanged,
               physics: NeverScrollableScrollPhysics(),
             ),
             bottomNavigationBar: Consumer<NavigationMasterPageViewModel>(builder: (context, vM, _) {

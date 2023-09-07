@@ -72,7 +72,10 @@ class Painting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(height: 250);
+    return SvgPicture.asset(
+       "assets/images/location_page/${viewModel.atCity ? "city_background" : "wilderness_background"}.svg",
+      width: MediaQuery.of(context).size.width,
+    );
   }
 }
 

@@ -14,9 +14,10 @@ class HexTileQuestMarker extends SvgComponent{
   @override
   Future<void>? onLoad() async {
     svg = await Svg.load(bannerPath);
+    size = Vector2(200, 200);
     return super.onLoad();
   }
 
-  String get bannerPath => "assets/images/world_map/quest_markers/Banner${{0:"A", 1:"B",2:"C",3:"D"}[localQuestId]}.svg";
+  String get bannerPath => "images/world_map/quest_markers/Banner${{0:"A", 1:"B",2:"C",3:"D"}[localQuestId]}.svg";
 
 }

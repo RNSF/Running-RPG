@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:running_game/pages/quest_page/view_model.dart';
 
@@ -52,6 +53,7 @@ class QuestPage extends StatelessWidget {
                           onSelection: viewModel.onCurrentQuestRemoved,
                           onHelp: (int index) => viewModel.onQuestHelpRequested(context, index, true),
                           onQuestRewardClaimed: viewModel.onQuestRewardClaimed,
+                          canGetMoreQuests: viewModel.canGetMoreQuests,
                         ) : Text("No active quests.", style: Theme.of(context).textTheme.bodySmall?.merge(TextStyle(color: Palette.primary, fontStyle: FontStyle.italic))),
                         SizedBox(height: 32),
                       ],),
@@ -72,6 +74,7 @@ class QuestPage extends StatelessWidget {
                           onSelection: viewModel.onAvailableQuestAdded,
                           onHelp: (int index) => viewModel.onQuestHelpRequested(context, index, false),
                           onQuestRewardClaimed: ((int index) {}),
+                          canGetMoreQuests: viewModel.canGetMoreQuests,
                         ) : Text("No available quests.", style: Theme.of(context).textTheme.bodySmall?.merge(TextStyle(color: Palette.primary, fontStyle: FontStyle.italic))),
                         SizedBox(height: 32),
                       ],),
@@ -114,6 +117,7 @@ class QuestList extends StatelessWidget {
 
   List<QuestDisplay> quests;
   bool mainStyle;
+  bool canGetMoreQuests;
   int? selectedCardIndex;
   Function(int) onTap;
   Function(int) onSelection;
@@ -128,7 +132,8 @@ class QuestList extends StatelessWidget {
     this.onTap,
     required this.onSelection,
     required this.onHelp,
-    required this.onQuestRewardClaimed
+    required this.onQuestRewardClaimed,
+    required this.canGetMoreQuests,
   }) : super(key: key);
 
   @override
@@ -145,7 +150,11 @@ class QuestList extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 4.0),
           child: GestureDetector(
             behavior: HitTestBehavior.translucent,
-            onTap: (() => quest.isCompleted ? onQuestRewardClaimed(index) : onTap(index)),
+            onTap: (quest.isCompleted ? () {
+              Navigator.pop(context);
+              onQuestRewardClaimed(quests[index].localQuestId);
+            }
+            : () => onTap(index)),
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0),
@@ -156,18 +165,30 @@ class QuestList extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(children: [
                   Row(children: [
-                    Text(
-                      quest.title,
-                      style: Theme.of(context).textTheme.headlineSmall?.merge(TextStyle(
-                        color: mainStyle ? Palette.background3 : Palette.button,
-                      )),
+                    !mainStyle ? Padding(
+                      padding: const EdgeInsets.only(right: 5.0),
+                      child: SvgPicture.asset(
+                        "assets/images/world_map/quest_markers/Banner${{0:"A", 1:"B",2:"C",3:"D"}[quest.localQuestId]}.svg",
+                        width: 20,
+                        height: 20,
+                      ),
+                    ) : Container(),
+                    Expanded(
+                      child: Text(
+                        quest.title,
+                        softWrap: true,
+                        maxLines: 2,
+                        style: Theme.of(context).textTheme.headlineSmall?.merge(TextStyle(
+                          color: mainStyle ? Palette.background3 : Palette.button,
+                        )),
+                      ),
                     ),
-                    Expanded(flex: 1, child: SizedBox()),
-                    quest.isCompleted ? Icon(Icons.star, color: Theme.of(context).accentColor) : IconButton(
+                    //Expanded(flex: 1, child: SizedBox()),
+                    quest.isCompleted ? Icon(Icons.star, color: Theme.of(context).accentColor)
+                        : IconButton(
                       onPressed: () => onHelp(index),
                       icon: Icon(Icons.question_mark, color: Theme.of(context).accentColor),
                     )
-
                   ],),
                   SizedBox(height: 12),
                   DescriptionWidget(quest: quest, style: Theme.of(context).textTheme.bodyMedium?.merge(TextStyle(color: mainStyle ? Palette.background2 : Palette.button))),
@@ -209,7 +230,20 @@ class QuestList extends StatelessWidget {
                               IconButton(
                                 icon: Icon(mainStyle ? Icons.check : Icons.close, color: Theme.of(context).accentColor),
                                 iconSize: 32.0,
-                                onPressed: () => showDialog(
+                                onPressed: () => !canGetMoreQuests && mainStyle ? showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text("Max Quests Already Taken"),
+                                    content: Text(
+                                      "You have already taken the maximum number of quests. Either cancel or complete the ones you have to get more."),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {Navigator.pop(context);},
+                                        child: Text("Close"),
+                                      ),
+                                    ]
+                                  )
+                                ) : showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
                                     title: Text(mainStyle ? "Accept Quest?" : "Cancel Quest?"),
@@ -259,14 +293,18 @@ class QuestStatWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(children: [
       Icon(icon, color: style?.color),
-      RichText(
-        textAlign: TextAlign.left,
-        text: TextSpan(
-          style: style,
-          children: [
-            TextSpan(text: statName + ": "),
-            TextSpan(text: statValue, style: TextStyle(fontWeight: FontWeight.bold)),
-          ]
+      Container(
+        width: 200,
+        child: RichText(
+          textAlign: TextAlign.left,
+          overflow: TextOverflow.ellipsis,
+          text: TextSpan(
+            style: style,
+            children: [
+              TextSpan(text: statName + ": "),
+              TextSpan(text: statValue, style: TextStyle(fontWeight: FontWeight.bold)),
+            ]
+          ),
         ),
       ),
     ],);

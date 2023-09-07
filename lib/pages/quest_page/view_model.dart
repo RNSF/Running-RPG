@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:running_game/pages/quest_page/models/quest_handler_model.dart';
 
 import '../../locator.dart';
+import '../navigation_master_page/remote_controller_model.dart';
 import 'models/quest.dart';
 import 'models/quest_generator.dart';
 import 'models/quest_giver.dart';
@@ -12,6 +13,7 @@ import 'models/quest_location.dart';
 
 class QuestPageViewModel extends ChangeNotifier {
   final questHandler = locator.get<QuestHandlerModel>();
+  final remoteNavigationController = locator.get<RemoteNavigationControllerModel>();
   late StreamSubscription questHandlerSubscription;
   var currentQuests = <QuestDisplay>[];
   var availableQuests = <QuestDisplay>[];
@@ -25,6 +27,8 @@ class QuestPageViewModel extends ChangeNotifier {
 
   int? selectedCurrentQuestIndex;
   int? selectedAvailableQuestIndex;
+
+  bool get canGetMoreQuests => questHandler.activeQuests.length < questHandler.maxActiveQuestCount;
 
   void onQuestHandlerUpdate(QuestHandlerModel _){
     for(var quest in questHandler.activeQuests.values){
@@ -44,6 +48,25 @@ class QuestPageViewModel extends ChangeNotifier {
         currentQuests.remove(currentQuest);
       }
     }
+    print("AVAILABLE QUESTS: ${questHandler.availableQuests}");
+
+    for(var quest in questHandler.availableQuests){
+      var hasQuest = false;
+      for(var availableQuest in availableQuests){
+        if(availableQuest.quest == quest){
+          hasQuest = true;
+          break;
+        }
+      }
+      if(!hasQuest){
+        availableQuests.add(QuestDisplay(quest: quest));
+      }
+    }
+    for(var currentQuest in List.from(availableQuests)){
+      if(!questHandler.availableQuests.contains(currentQuest.quest)){
+        availableQuests.remove(currentQuest);
+      }
+    }
   }
 
 
@@ -59,6 +82,7 @@ class QuestPageViewModel extends ChangeNotifier {
   void onAvailableQuestAdded(int index){
     var questView = availableQuests.removeAt(index);
     questHandler.addActiveQuest(questView.quest);
+    questHandler.removeAvailableQuest(index);
     selectedAvailableQuestIndex = selectedAvailableQuestIndex == index ? null : index;
     notifyListeners();
   }
@@ -77,13 +101,17 @@ class QuestPageViewModel extends ChangeNotifier {
 
   void onQuestRewardClaimed(int index){
     questHandler.questCompleted(index);
+    remoteNavigationController.queueSwitch("Character");
   }
 
 
-  void onQuestHelpRequested(BuildContext context, int index, bool isCurrentQuest){
+  void onQuestHelpRequested(BuildContext context, int index, bool isCurrentQuest) async {
     var quest = isCurrentQuest ? currentQuests[index].quest : availableQuests[index].quest;
     questHandler.currentlyViewedQuest = quest;
-    Navigator.of(context).pushNamed("/map_page");
+    remoteNavigationController.queueSwitch("Map");
+    Navigator.pop(context);
+    //await Navigator.of(context).pushNamed("/map_page");
+    //questHandler.currentlyViewedQuest = null;
   }
 
 }
@@ -113,6 +141,7 @@ class QuestDisplay {
   String get description => quest.description;
   String get title => quest.title;
   String get questGiver => quest.questGiver.name;
+  int get localQuestId => (quest.localId ?? 0);
   bool get isCompleted => quest.state == QuestState.rewardPending;
 }
 

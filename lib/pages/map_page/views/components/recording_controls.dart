@@ -28,7 +28,7 @@ class RecordingControls extends StatelessWidget {
           ),
           Expanded(flex: 1, child: SizedBox()),
           ElevatedButton(onPressed: () {
-            viewModel.travel(0.1);
+            viewModel.travel(0.8);
           }, child: Icon(Icons.arrow_right))
         ],
       ),

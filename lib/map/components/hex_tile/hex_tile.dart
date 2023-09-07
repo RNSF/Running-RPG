@@ -121,9 +121,12 @@ class HexTile extends PositionComponent {
     return null;
   }
 
-  HexTileSelector addSelector(Function(TapUpInfo, HexTileSelector) onPressed, HexTileSelectorType selectorType){
-    if(selectors.isNotEmpty){selectors.last.active = false;}
-    selectors.add(HexTileSelector(onPressed: onPressed, tilePosition: tilePosition, type: selectorType)
+  HexTileSelector addSelector(Function(TapUpInfo, HexTileSelector)? onPressed, HexTileSelectorType selectorType){
+    if(selectors.isNotEmpty){
+      selectors.last.active = false;
+      onPressed ??= selectors.last.onPressed;
+    }
+    selectors.add(HexTileSelector(onPressed: onPressed ?? (_, __){}, tilePosition: tilePosition, type: selectorType)
       ..size = Vector2(sideLength*2, sideLength*sqrt(3))
       ..position = hexTop.position
       ..active = true);
@@ -172,13 +175,14 @@ class HexTile extends PositionComponent {
 
   void adjustQuestMarkers(){
     var angleDifference = 20/360*2*pi;
-    var markerAngle = angleDifference*(questMarkers.length-1)*0.5;
+    var markerAngle = angleDifference*(questMarkers.length-1)*-0.5;
     var positionDifference = Vector2(20, 0);
-    var markerPosition = Vector2(0, 70);
+    var markerPosition = hexTop.position+Vector2(0, 70);
 
     for(var questMarker in List<HexTileQuestMarker>.from(questMarkers)){
       questMarker.angle = markerAngle;
       questMarker.position = markerPosition;
+      questMarker.priority = 1+priority;
       markerPosition += positionDifference;
       markerAngle += angleDifference;
     }

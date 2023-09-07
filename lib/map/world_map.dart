@@ -5,6 +5,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:running_game/json_converters/json_loader.dart';
 import 'package:running_game/pages/map_page/view_model.dart';
 import 'package:running_game/saving_service/saving_service.dart';
 
@@ -29,6 +30,7 @@ class WorldMapGame extends FlameGame with ScaleDetector, HasTappables {
   late final List<List<HexTile>> tiles;
   var _inBuildingMode = false;
   var _highlightedQuestLocations = <Vector2>[];
+  var _questMarkerQuestIds = <Vector2, List<int>>{};
   late MapPlayer player;
   late CameraController cameraController;
   HexTileMap? hexTileMap;
@@ -52,7 +54,7 @@ class WorldMapGame extends FlameGame with ScaleDetector, HasTappables {
     //World and Map
 
     var worldMapData = WorldMapData();
-    var json = await worldMapData.getJson(context);
+    var json = await JsonLoader().getJson(context, "assets/data/world_map.json");
     hexTileMap = worldMapData.generateGroundFromJson(json["ground"]);
 
     for(var column in hexTileMap!.tiles){
@@ -67,12 +69,11 @@ class WorldMapGame extends FlameGame with ScaleDetector, HasTappables {
     final saveHandler = locator.get<SaveDataHandler>();
     Map<String, dynamic>? playerData = saveHandler.findMap(["game", "map", "player"]);
     if(playerData != null){
-
       player = MapPlayer.fromJson(playerData, hexTileMap!);
     } else {
       player = MapPlayer(
         hexTileMap: hexTileMap!,
-        playerPath: PlayerPath(playerPosition: PlayerPosition(tileAPosition: Vector2(33.0, 15.0), amountTravelled: 0)),
+        playerPath: PlayerPath(playerPosition: PlayerPosition(tileAPosition: Vector2(21.0, 10.0), amountTravelled: 0)),
         initialStartingOffset: 0.0,
       );
     }
@@ -84,8 +85,7 @@ class WorldMapGame extends FlameGame with ScaleDetector, HasTappables {
     //Camera Controller
     cameraController = CameraController(camera: camera);
     await add(cameraController);
-
-    cameraController.position = player.sprite.absolutePosition;
+    cameraController.position = hexTileMap?.getTileFromVector2(player.playerPath.path.first)?.hexTop.absolutePosition;
     cameraController.zoom = 1/5;
     onStructurePressed = ((_, __) {});
     viewModel.onMapLoaded();
@@ -128,7 +128,7 @@ class WorldMapGame extends FlameGame with ScaleDetector, HasTappables {
   }
 
   void flyCameraToPlayer(){
-    cameraController.fly(player.sprite.absolutePosition);
+    cameraController.fly(player.sprite?.absolutePosition ?? Vector2.zero());
   }
 
 
@@ -142,18 +142,30 @@ class WorldMapGame extends FlameGame with ScaleDetector, HasTappables {
     Vector2? topLeft;
     Vector2? bottomRight;
     for(var mapCoordinate in mapCoordinates){
-      pos += mapCoordinate;
+      pos = hexTileMap?.getTileFromVector2(mapCoordinate)?.hexTop.absolutePosition ?? Vector2.zero();
       topLeft = topLeft == null ? pos : Vector2(min(topLeft.x, pos.x), min(topLeft.y, pos.y));
       bottomRight = bottomRight == null ? pos : Vector2(max(bottomRight.x, pos.x), max(bottomRight.y, pos.y));
     }
+
     if(topLeft != null && bottomRight != null){
-      var size = bottomRight - topLeft;
-      var zoom = min(
-        size.x/camera.viewport.effectiveSize.x,
-        size.y/camera.viewport.effectiveSize.y,
-      );
-      pos /= mapCoordinates.length.toDouble();
-      cameraController.fly(pos, targetZoom: zoom);
+      var size = (bottomRight - topLeft);
+      var zoom = 0.2;
+      if(size.x != 0 && size.y != 0){
+        zoom = min(
+          min(
+            camera.viewport.effectiveSize.x/size.x/1.5,
+            camera.viewport.effectiveSize.y/size.y/1.5,
+          ),
+          0.2
+        );
+      } else if (size.x != 0){
+        zoom = size.x;
+      } else if (size.y != 0){
+        zoom = size.y;
+      }
+
+      cameraController.fly((topLeft+bottomRight)/2, targetZoom: zoom);
+
     }
   }
 
@@ -187,7 +199,7 @@ class WorldMapGame extends FlameGame with ScaleDetector, HasTappables {
     }
   }
 
-  set onCoordinatesReached(Function(Vector2) n){
+  set onCoordinatesReached(Function(Vector2, HexTileMap) n){
     player.onCoordinatesReached = n;
   }
 
@@ -197,11 +209,31 @@ class WorldMapGame extends FlameGame with ScaleDetector, HasTappables {
     }
     _highlightedQuestLocations = n;
     for(var locationCoordinates in _highlightedQuestLocations){
-      hexTileMap?.getTileFromVector2(locationCoordinates)?.addSelector((_, __) {}, HexTileSelectorType.questView);
+      hexTileMap?.getTileFromVector2(locationCoordinates)?.addSelector(null, HexTileSelectorType.questView);
     }
   }
 
-  set onMapDrag(Function n) => cameraController.onCameraChangePosition = n;
+  set onMapDrag(Function n) => cameraController.onCameraDrag = n;
+
+  set questMarkerQuestIds(Map<Vector2, List<int>> n){
+
+    _questMarkerQuestIds.forEach((mapCoordinates, updates) {
+      for(var localQuestId in updates){
+        hexTileMap?.getTileFromVector2(mapCoordinates)?.removeQuestMarker(localQuestId);
+      }
+    });
+
+    _questMarkerQuestIds = n;
+
+    _questMarkerQuestIds.forEach((mapCoordinates, updates) {
+      for(var localQuestId in updates){
+        hexTileMap?.getTileFromVector2(mapCoordinates)?.addQuestMarker(localQuestId);
+        if(!updates.contains(localQuestId)){
+          hexTileMap?.getTileFromVector2(mapCoordinates)?.removeQuestMarker(localQuestId);
+        }
+      }
+    });
+  }
 
   void savePlayer(){
     final saveHandler = locator.get<SaveDataHandler>();
@@ -209,6 +241,7 @@ class WorldMapGame extends FlameGame with ScaleDetector, HasTappables {
     saveHandler.saveData();
   }
 
+  set playerSkin(int n) => player.playerSkin = n;
 
 
 

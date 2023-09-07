@@ -79,8 +79,11 @@ flutter:
     - assets/images/world_map/decals/rock/
     - assets/images/world_map/player/
     - assets/images/world_map/hex_selector/
+    - assets/images/world_map/quest_markers/
     - assets/images/location_page/city_buttons/
     - assets/images/
+    - assets/images/character_page/
+    - assets/images/location_page/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

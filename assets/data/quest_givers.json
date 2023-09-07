@@ -1,0 +1,836 @@
+{
+    "data": [
+        {
+            "Type": "Towns People",
+            "Names": [
+                ""
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Blacksmith",
+            "Names": [
+                "The Blacksmith"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 1.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 1.0
+        },
+        {
+            "Type": "Carpenter",
+            "Names": [
+                "The Carpenter"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 1.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Lumberjack",
+            "Names": [
+                "The Lumberjack"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 1.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Armorer",
+            "Names": [
+                "The Armorer"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 1.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 1.0
+        },
+        {
+            "Type": "Doctor",
+            "Names": [
+                "The Doctor"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 1.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Potter",
+            "Names": [
+                "The Potter"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 1.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Jeweler",
+            "Names": [
+                "The Jeweler"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Leatherworker",
+            "Names": [
+                "The Leatherworker"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 1.0,
+            "port": 0.0,
+            "farming": 1.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Locksmith",
+            "Names": [
+                "The Locksmith"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 1.0
+        },
+        {
+            "Type": "Baker",
+            "Names": [
+                "The Baker"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 1.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Barber",
+            "Names": [
+                "The Barber"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Butcher",
+            "Names": [
+                "The Butcher"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 1.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Clock Maker",
+            "Names": [
+                "The Clock Maker"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 1.0
+        },
+        {
+            "Type": "Fisherman",
+            "Names": [
+                "The Fisherman"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 1.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Sailor",
+            "Names": [
+                "The Sailor"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 1.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Mason",
+            "Names": [
+                "The Mason"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 1.0
+        },
+        {
+            "Type": "Midwife",
+            "Names": [
+                "The Midwife"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 1.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Merchant",
+            "Names": [
+                "The Merchant"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Woodcarver",
+            "Names": [
+                "The Woodcarver"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 1.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Chef",
+            "Names": [
+                "The Chef"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Farmer",
+            "Names": [
+                "The Farmer"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 1.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Law",
+            "Names": [
+                "The Law"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Judge",
+            "Names": [
+                "The Judge"
+            ],
+            "wealth": 0.0,
+            "size": 1.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Tax Collector",
+            "Names": [
+                "The Tax Collector"
+            ],
+            "wealth": 1.0,
+            "size": 1.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Science People",
+            "Names": [
+                "The Science People"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Wizard",
+            "Names": [
+                "The Wizard"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 1.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Philospher",
+            "Names": [
+                "The Philospher"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 1.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Cartographer",
+            "Names": [
+                "The Cartographer"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 1.0,
+            "scholardarity": 1.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Explorer",
+            "Names": [
+                "The Explorer"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 1.0,
+            "scholardarity": 1.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Alchemist",
+            "Names": [
+                "The Alchemist"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 1.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Historian",
+            "Names": [
+                "The Historian"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 1.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Scholar",
+            "Names": [
+                "The Scholar"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 1.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Witch",
+            "Names": [
+                "The Witch"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 1.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Fighters",
+            "Names": [
+                "The Fighters"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Warrior",
+            "Names": [
+                "The Warrior"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 1.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Archer",
+            "Names": [
+                "The Archer"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 1.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Captain",
+            "Names": [
+                "The Captain"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 1.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Religious",
+            "Names": [
+                "The Religious"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Shaman",
+            "Names": [
+                "The Shaman"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 1.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Minister",
+            "Names": [
+                "The Minister"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 1.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Clergyman",
+            "Names": [
+                "The Clergyman"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 1.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Diviner",
+            "Names": [
+                "The Diviner"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 1.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Warlock",
+            "Names": [
+                "The Warlock"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 1.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Priest",
+            "Names": [
+                "The Priest"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 1.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Rich/Royalty",
+            "Names": [
+                "The Rich/Royalty"
+            ],
+            "wealth": 0.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Duke",
+            "Names": [
+                "The Duke"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Mayor",
+            "Names": [
+                "The Mayor"
+            ],
+            "wealth": 1.0,
+            "size": 0.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "King",
+            "Names": [
+                "The King"
+            ],
+            "wealth": 1.0,
+            "size": 1.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Queen",
+            "Names": [
+                "The Queen"
+            ],
+            "wealth": 1.0,
+            "size": 1.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Noble",
+            "Names": [
+                "The Noble"
+            ],
+            "wealth": 1.0,
+            "size": 1.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        },
+        {
+            "Type": "Squire",
+            "Names": [
+                "The Squire"
+            ],
+            "wealth": 1.0,
+            "size": 1.0,
+            "holy_magic": 0.0,
+            "nature_magic": 0.0,
+            "scholardarity": 0.0,
+            "military": 0.0,
+            "port": 0.0,
+            "farming": 0.0,
+            "lumber": 0.0,
+            "mining": 0.0
+        }
+    ]
+}

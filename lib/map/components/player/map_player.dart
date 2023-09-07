@@ -11,9 +11,9 @@ import 'package:running_game/map/components/player/route_builder.dart';
 import '../hex_tile_map.dart';
 
 class MapPlayer extends PositionComponent{
-  late SvgComponent sprite;
+  SvgComponent? sprite;
   late PlayerRouteBuilder playerRouteBuilder;
-  late PlayerPathLine playerPathLine;
+  List<PlayerPathLine> playerPathLines = [];
   late final playerPathSubscription;
   final HexTileMap hexTileMap;
   PlayerPath playerPath;
@@ -41,27 +41,45 @@ class MapPlayer extends PositionComponent{
 
   @override
   Future<void>? onLoad() async {
-    var svg = await Svg.load("images/world_map/player/player2.svg");
-    sprite = SvgComponent(svg: svg)
-      ..size = Vector2(200, 200)
-      ..anchor = Anchor.center;
-    add(sprite);
-    add(playerRouteBuilder);
-    playerPathLine = PlayerPathLine(path: [...playerPath.path], hexTileMap: hexTileMap);
-    add(playerPathLine);
+
+    playerPathLines.add(PlayerPathLine(path: [...playerPath.path], hexTileMap: hexTileMap, isShadow: true));
+    playerPathLines.add(PlayerPathLine(path: [...playerPath.path], hexTileMap: hexTileMap));
 
     playerPathSubscription = playerPath.stream.listen(
       (newPlayerPath) {
         if(inBuildingMode){
           playerRouteBuilder.updatePossibleExtensions(hexTileMap);
         }
-        playerPathLine.updatePath(playerPath.path);
+        for(var playerPathLine in playerPathLines){
+          playerPathLine.updatePath(playerPath.path);
+        }
       }
     );
 
-    sprite.position = playerPath.playerPosition?.getRealPosition(hexTileMap) ?? Vector2.zero();
+    updateSprite(0);
 
-    playerPathLine.endPercentageHidden = startingOffset;
+    add(playerRouteBuilder);
+
+    for(var playerPathLine in playerPathLines){
+      add(playerPathLine);
+      playerPathLine.endPercentageHidden = startingOffset;
+      playerPathLine.priority = -1;
+    }
+  }
+
+  void updateSprite(int index) async {
+    if(sprite != null){
+      remove(sprite!);
+    }
+    var svg = await Svg.load("images/world_map/player/player${(index%4)+1}.svg");
+    sprite = SvgComponent(svg: svg)
+      ..size = Vector2(200, 200)
+      ..anchor = Anchor.center
+      ..position = Vector2(0, 100);
+    add(sprite!);
+    sprite?.position = playerPath.playerPosition?.getRealPosition(hexTileMap) ?? Vector2.zero();
+    sprite?.scale = (playerPath.playerPosition?.isPointingLeft ?? false) ? Vector2(-1, 1) : Vector2(1, 1);
+    print(playerPath.playerPosition?.getRealPosition(hexTileMap));
   }
 
   void enterBuildingMode(){
@@ -77,9 +95,12 @@ class MapPlayer extends PositionComponent{
   set amountTravelled(n){
     _amountTravelled = min(n, pathLength);
     playerPath.playerPosition?.update(playerPath, _amountTravelled/hexDistance+startingOffset); //remove distance from playerPath playerPosition
-    playerPathLine.updatePlayerDistance(_amountTravelled/hexDistance+startingOffset);
+    for(var playerPathLine in playerPathLines){
+      playerPathLine.updatePlayerDistance(_amountTravelled/hexDistance+startingOffset);
+    }
     if(playerPath.playerPosition?.getRealPosition(hexTileMap) != null){
-      sprite.position = playerPath.playerPosition?.getRealPosition(hexTileMap)! ?? Vector2.zero();
+      sprite?.position = playerPath.playerPosition?.getRealPosition(hexTileMap)! ?? Vector2.zero();
+      sprite?.scale = (playerPath.playerPosition?.isPointingLeft ?? false) ? Vector2(-1, 1) : Vector2(1, 1);
     }
   }
 
@@ -93,12 +114,16 @@ class MapPlayer extends PositionComponent{
 
   set startingOffset(n){
     _startingOffset = n;
-    playerPathLine.endPercentageHidden = _startingOffset;
+    for(var playerPathLine in playerPathLines){
+      playerPathLine.endPercentageHidden = _startingOffset;
+    }
   }
 
   double get startingOffset => _startingOffset;
 
   double get pathLength => (playerPath.path.length.toDouble()-1-startingOffset)*hexDistance;
 
-  set onCoordinatesReached(Function(Vector2 coordinates) n) => playerPath.playerPosition?.onCoordinatesReached = n;
+  set onCoordinatesReached(Function(Vector2 coordinates, HexTileMap hexTileMap) n) => playerPath.playerPosition?.onCoordinatesReached = (Vector2 coordinates) => n(coordinates, hexTileMap);
+
+  set playerSkin(int n) => updateSprite(n);
 }

@@ -5,6 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:running_game/json_converters/vector2_json_converter.dart';
 import 'package:running_game/map/components/player/player_path.dart';
 
+import '../../../pages/map_page/travel_event.dart';
 import '../hex_tile/hex_tile.dart';
 import '../hex_tile_map.dart';
 
@@ -15,10 +16,11 @@ class PlayerPosition {
   @Vector2JsonConverter()
   Vector2? tileBPosition;
   double amountTravelled;
-  Function(Vector2 coordinates)? onCoordinatesReached;
+  bool isPointingLeft;
+  Function(Vector2 coordinates)? _onCoordinatesReached;
 
-  PlayerPosition({Vector2? tileAPosition, this.tileBPosition, this.amountTravelled = 0.0}) {
-    _tileAPosition = tileAPosition ?? Vector2(33.0, 15.0);
+  PlayerPosition({Vector2? tileAPosition, this.tileBPosition, this.amountTravelled = 0.0, this.isPointingLeft = false}) {
+    _tileAPosition = tileAPosition ?? Vector2(21.0, 10.0);
   }
 
   factory PlayerPosition.fromJson(Map json) => PlayerPosition(tileAPosition: Vector2.zero(), amountTravelled: 0);
@@ -45,6 +47,8 @@ class PlayerPosition {
     var index = (distanceTravelled).round();
     tileAPosition = playerPath.path[index];
     tileBPosition = playerPath.path.length > index+1 ? playerPath.path[index+1] : null;
+    isPointingLeft = (tileBPosition == null || tileAPosition.x == tileBPosition?.x) ? isPointingLeft : (tileAPosition.x > tileBPosition!.x);
+    print("IS POINTING LEFT? $isPointingLeft");
   }
 
   @Vector2JsonConverter()
@@ -57,5 +61,12 @@ class PlayerPosition {
         onCoordinatesReached!(tileAPosition);
       }
     }
+  }
+
+  get onCoordinatesReached => _onCoordinatesReached;
+  set onCoordinatesReached(n) {
+    _onCoordinatesReached = n;
+    onCoordinatesReached(tileAPosition);
+    print("On coordinates reached set!");
   }
 }

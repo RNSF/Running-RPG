@@ -15,7 +15,7 @@ class CameraController extends Component{
   Camera camera;
   FlyAnimation? flyAnimation;
   double scaleStartZoom = 0.0;
-  Function onCameraChangePosition = () {};
+  Function onCameraDrag = () {};
   final maxZoom = 1/2.0;
   final minZoom = 1/15.0;
   var state = CameraState.controllable;
@@ -24,7 +24,9 @@ class CameraController extends Component{
 
   set position(n){
     if(_position != n){
-      onCameraChangePosition();
+      if(state == CameraState.controllable){
+        onCameraDrag();
+      }
       _position = n;
     }
     camera.snapTo(_position-camera.viewport.effectiveSize/2/camera.zoom);

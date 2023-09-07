@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:running_game/map/components/hex_tile/hex_tile_type.dart';
 import 'package:running_game/map/components/player/player_path.dart';
 import "package:running_game/map/components/hex_tile/hex_shape_data.dart";
 
@@ -21,9 +22,14 @@ class PlayerRouteBuilder extends PositionComponent{
     var endPosition = playerPath.path.last;
     removeAllExtensions(hexTileMap);
     if(hexTileMap.getTileFromVector2(endPosition) != null){
-      var endPositionHeight = hexTileMap.getTileFromVector2(endPosition)!.height;
+      var endPositionHeight = hexTileMap.getTileFromVector2(endPosition)!.tileHeight;
+
       hexTileMap.getBoardingTiles(endPosition).forEach((borderPosition, tile) {
-        bool validExtension = tile != null && ((playerPath.path.length >= 2 ? playerPath.path[playerPath.path.length-2] : null) != tile.tilePosition && (endPositionHeight-tile.height).abs() < 2);
+        bool validExtension = (
+            tile != null &&
+            ((playerPath.path.length >= 2 ? playerPath.path[playerPath.path.length-2] : null) != tile.tilePosition &&
+            (endPositionHeight-tile.tileHeight).abs() < 2) &&
+            tile.type != HexTileType.water);
         if(validExtension) {
           addExtension(tile);
         }

@@ -7,6 +7,7 @@ part of 'quest.dart';
 // **************************************************************************
 
 Quest _$QuestFromJson(Map json) => Quest(
+      creationDate: DateTime.parse(json['creationDate'] as String),
       destinations: (json['destinations'] as List<dynamic>?)
               ?.map((e) => QuestLocation.fromJson(e as Map))
               .toList() ??
@@ -46,6 +47,7 @@ Map<String, dynamic> _$QuestToJson(Quest instance) => <String, dynamic>{
       'descriptions': instance.descriptions
           .map((k, e) => MapEntry(_$QuestStateEnumMap[k]!, e)),
       'title': instance.title,
+      'creationDate': instance.creationDate.toIso8601String(),
       'reachedDestinations':
           instance.reachedDestinations.map((e) => e.toJson()).toList(),
       'state': _$QuestStateEnumMap[instance.state]!,
@@ -55,6 +57,7 @@ Map<String, dynamic> _$QuestToJson(Quest instance) => <String, dynamic>{
 
 const _$QuestStateEnumMap = {
   QuestState.main: 'main',
+  QuestState.destinationReached: 'destinationReached',
   QuestState.comeBack: 'comeBack',
   QuestState.rewardPending: 'rewardPending',
 };

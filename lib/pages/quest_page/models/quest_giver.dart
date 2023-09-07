@@ -17,6 +17,7 @@ class QuestGiver {
 }
 
 class QuestGiverType {
+  var type = "";
   var preferredCityStats = CityStats();
   var questTypes = <QuestType>[
 
@@ -24,6 +25,12 @@ class QuestGiverType {
   var possibleNames = <String>[
 
   ];
+
+  QuestGiverType({
+    this.type = "",
+    this.preferredCityStats = const CityStats(),
+    this.possibleNames = const []
+  });
 
   double findQuestingPotential(double difficulty, CityStats cityStats){
     return findCityScore(cityStats)*findQuestScore(difficulty);
@@ -33,10 +40,17 @@ class QuestGiverType {
     var cityScore = 0.0;
     var jsonPreferredCityStats = preferredCityStats.toJson();
     var jsonCityStats = cityStats.toJson();
+    var nonZeroStatCount = 0;
     jsonPreferredCityStats.forEach((statName, value) {
+      if(statName == "size"){
+        value = 0.5;
+      }
       cityScore += value*jsonCityStats[statName]!;
+      if(value > 0.0){
+        nonZeroStatCount++;
+      }
     });
-    return cityScore;
+    return cityScore/nonZeroStatCount;
   }
 
   double findQuestScore(double difficulty){
@@ -48,10 +62,12 @@ class QuestGiverType {
   }
 
   QuestType chooseQuestType(double difficulty){
+
     var questScores = <QuestType, double>{};
     for(var questType in questTypes){
       questScores[questType] = questType.findIdealness(difficulty);
     }
+    print(questScores);
     return chooseWeighted(questScores);
   }
 

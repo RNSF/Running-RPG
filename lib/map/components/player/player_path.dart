@@ -41,8 +41,10 @@ class PlayerPath {
   }
 
   void reduce(){
-    path.removeLast();
-    updatePath(path);
+    if(path.length > 2 || (path.length > 1 && playerPosition?.tileBPosition == null)){
+      path.removeLast();
+      updatePath(path);
+    }
   }
 
   void chop(){

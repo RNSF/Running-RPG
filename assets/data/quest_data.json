@@ -1,0 +1,819 @@
+{
+    "data": [
+        {
+            "Quest Giver": [
+                "Blacksmith"
+            ],
+            "Titles": [
+                "Fix Blacksmith's Pickaxe"
+            ],
+            "Rarity": 1.0,
+            "Is City": true,
+            "Return": true,
+            "Min Distance": 1,
+            "Max Distance": 25,
+            "Min Time": 2,
+            "Max Time": 4,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                "Wealth",
+                "Mining"
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "[person]'s pickaxe broke a few days ago, and he needs it repaired. Bring it back within [time] for a handsome reward.",
+            "Location Text": "You repaired [persons]'s pickaxe. Time to get it back to him!",
+            "Return Text": "You repaired [persons]'s pickaxe. Time to get it back to him!",
+            "End Text": "You give the blacksmith his pickaxe back, and he goes on to chop up his backlog of rocks."
+        },
+        {
+            "Quest Giver": [
+                "Blacksmith"
+            ],
+            "Titles": [
+                "Get Gems for Blacksmith"
+            ],
+            "Rarity": 1.0,
+            "Is City": false,
+            "Return": true,
+            "Min Distance": 10,
+            "Max Distance": 25,
+            "Min Time": 3,
+            "Max Time": 4,
+            "Min Destination Count": 3,
+            "Max Destination Count": 4,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Mountain"
+            ],
+            "Nature Location Names": [
+                "Gem Mine"
+            ],
+            "Start Text": "[person] is currently constructing a powerful amulet, and needs someone to retreive some magic gems from the nearby mines\"",
+            "Location Text": "You meet a rough looking dwarf who gives you a shiny gemstone. You continue on your way.",
+            "Return Text": "You've collected all the gems. Time to get back to [person]!",
+            "End Text": "[person] thanks you greatly for finding the gems. He lets you stay as he forges them into a gauntlent, before using it to blast a fireball through his roof."
+        },
+        {
+            "Quest Giver": [
+                "Mother"
+            ],
+            "Titles": [
+                "Find Lost Child"
+            ],
+            "Rarity": 1.0,
+            "Is City": false,
+            "Return": true,
+            "Min Distance": 3,
+            "Max Distance": 5,
+            "Min Time": 1,
+            "Max Time": 2,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Forest",
+                "Mountain"
+            ],
+            "Nature Location Names": [
+                "Location Last Spotted"
+            ],
+            "Start Text": "Please help me find my child! He was last seen near [location]. I don't know how much longer he has left! Please bring back him within [time].",
+            "Location Text": "You find the child hiding under a tree. He smiles as he laughs at you. An evil glare knocks some sense into him, however.",
+            "Return Text": "You have the child. Time to get them back to [person]!",
+            "End Text": "[person] thanks you greatly for finding her son. You take some freshly baked cookies to go!"
+        },
+        {
+            "Quest Giver": [
+                "Guard Captain"
+            ],
+            "Titles": [
+                "Hunt Down Orcs"
+            ],
+            "Rarity": 0.5,
+            "Is City": false,
+            "Return": false,
+            "Min Distance": 4,
+            "Max Distance": 25,
+            "Min Time": 2,
+            "Max Time": 4,
+            "Min Destination Count": 1,
+            "Max Destination Count": 2,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Forest",
+                "Mountain",
+                "Field"
+            ],
+            "Nature Location Names": [
+                "Orc Camp"
+            ],
+            "Start Text": "Aiy! Some orcs have been causin' trouble round these parts and I need someone to deal with 'em. This be a dangerous mission so be warned! They are plannin' on spreading so take care of 'em within [time].",
+            "Location Text": "You spot the encampment, and using your ingenuity, you develop a plan so great, the orcs only choice is to surrender! ",
+            "Return Text": "",
+            "End Text": "Good job lad! I've heard news of your conquest! To be honest, I didn't think you would be able to do it by yourself, but I am thouroughly impressed. Find your reward attached."
+        },
+        {
+            "Quest Giver": [
+                "Guard Captain",
+                "Mayor",
+                "King"
+            ],
+            "Titles": [
+                "Warns Farms about Incoming Invasion"
+            ],
+            "Rarity": 0.5,
+            "Is City": false,
+            "Return": false,
+            "Min Distance": 1,
+            "Max Distance": 5,
+            "Min Time": 4,
+            "Max Time": 8,
+            "Min Destination Count": 3,
+            "Max Destination Count": 5,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Fields"
+            ],
+            "Nature Location Names": [
+                "Farm"
+            ],
+            "Start Text": "[person] has heard recent news of an incoming invasion targetted at the farms! They need the fastest messanger to warn the peasants!",
+            "Location Text": "You warn the peasants and they quickly arm themselves with what weapons they have. The most vulnerable begin their treck toward the city to seek refuge.",
+            "Return Text": "",
+            "End Text": "Thanks to your speedy delivery, the peasants were able to come together to defeat the incoming orc hoards. You have earned the title \"Saver of Crops\" !"
+        },
+        {
+            "Quest Giver": [
+                "Mayor",
+                "King"
+            ],
+            "Titles": [
+                "Warns City about Incoming Invasion"
+            ],
+            "Rarity": 0.5,
+            "Is City": true,
+            "Return": false,
+            "Min Distance": 1,
+            "Max Distance": 50,
+            "Min Time": 1,
+            "Max Time": 6,
+            "Min Destination Count": 1,
+            "Max Destination Count": 3,
+            "Preferred City Stats": [
+                "Military"
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "[person] has heard recent news of an incoming invasion targetted towards [location]! They need the fastest messanger to warn the people!",
+            "Location Text": "You seek a council with the leader of the local militia and convince them to prepare their forces the incoming invasion.",
+            "Return Text": "",
+            "End Text": "The military easily defends [location] from the orcs, and the people live happily ever after (for now)."
+        },
+        {
+            "Quest Giver": [
+                "Any"
+            ],
+            "Titles": [
+                "Deliver a Message to a Friend"
+            ],
+            "Rarity": 1.0,
+            "Is City": false,
+            "Return": false,
+            "Min Distance": 1,
+            "Max Distance": 50,
+            "Min Time": 3,
+            "Max Time": 14,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "I need you to deliver a message to my friend. I can't stand the mail service!",
+            "Location Text": "You deliver the yellow tinted envelope to a strange looking building on the edge of town.",
+            "Return Text": "",
+            "End Text": "Sliding the message under the door, some gold rains down on you from the window above."
+        },
+        {
+            "Quest Giver": [
+                "Cartographer",
+                "Explorer",
+                "Historian",
+                "Scholar",
+                "Druid"
+            ],
+            "Titles": [
+                "Explore Forest"
+            ],
+            "Rarity": 0.5,
+            "Is City": false,
+            "Return": true,
+            "Min Distance": 4,
+            "Max Distance": 20,
+            "Min Time": 3,
+            "Max Time": 10,
+            "Min Destination Count": 2,
+            "Max Destination Count": 4,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Forest"
+            ],
+            "Nature Location Names": [
+                "Unexplored Woods"
+            ],
+            "Start Text": "[person] is looking for someone to explore some nearby woods for them. They need the area mapped out to a T!",
+            "Location Text": "You navigate throw the underbrush. It is tough work, but you continue to note down your findings.",
+            "Return Text": "All the locations have been mapped. Get back to [person] to claim your reward.",
+            "End Text": "Returning with your findings, you feel extremely exhausted. Luckily [person] payed well, and let you stay at their abode for the evening."
+        },
+        {
+            "Quest Giver": [
+                "Cartographer",
+                "Explorer",
+                "Historian",
+                "Scholar",
+                "Druid"
+            ],
+            "Titles": [
+                "Explore Mountain"
+            ],
+            "Rarity": 0.5,
+            "Is City": false,
+            "Return": true,
+            "Min Distance": 4,
+            "Max Distance": 20,
+            "Min Time": 3,
+            "Max Time": 10,
+            "Min Destination Count": 2,
+            "Max Destination Count": 4,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Mountain"
+            ],
+            "Nature Location Names": [
+                "Unexplored Mountain"
+            ],
+            "Start Text": "Attention adventurers! The local mountains have once again proven difficult for my old feeble body to explore. I need you to explore them for me!",
+            "Location Text": "Making your way of the uneven terrain you reach another peak. You note your findings before carrying on.",
+            "Return Text": "All the locations have been mapped. Get back to [person] to claim your reward.",
+            "End Text": "You return with a fleshed out map of the main features of the land. The old man which hired you is very pleased, but also a bit disappointed."
+        },
+        {
+            "Quest Giver": [
+                "Any"
+            ],
+            "Titles": [
+                "Deliver a Message to a Lover"
+            ],
+            "Rarity": 1.0,
+            "Is City": true,
+            "Return": false,
+            "Min Distance": 4,
+            "Max Distance": 100,
+            "Min Time": 2,
+            "Max Time": 8,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "Love has no bounds. [person] needs you to deliver a letter to their lover who currently resides in [location].",
+            "Location Text": "Making your way through the busy streets, you finally find the house in which [person]'s lover lives. Knocking on the door, you are stunned by their beuty before delivering the letter.",
+            "Return Text": "",
+            "End Text": "The lover is overjoyed to see that [person] still carries them in their heart."
+        },
+        {
+            "Quest Giver": [
+                "Druid"
+            ],
+            "Titles": [
+                "Check on the Health of the Forest"
+            ],
+            "Rarity": 0.25,
+            "Is City": false,
+            "Return": true,
+            "Min Distance": 1,
+            "Max Distance": 3,
+            "Min Time": 1,
+            "Max Time": 3,
+            "Min Destination Count": 1,
+            "Max Destination Count": 4,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Forest"
+            ],
+            "Nature Location Names": [
+                "Unexplored Woods"
+            ],
+            "Start Text": "I have recently sensed bad omen's coming from the nearby woods which I have sword to protect! Please help, for the good of the trees!",
+            "Location Text": "You reach one of the points of interest, a grand tree sits in front of you, and it looks like its starting to wither away. ",
+            "Return Text": "You've checked on all the locations. Time to get back to [location]!",
+            "End Text": "Repoting your findings to [person], they are concerened but also incredibaly grateful for you help."
+        },
+        {
+            "Quest Giver": [
+                "Trader/Port"
+            ],
+            "Titles": [
+                "Deliver an Expensive Cargo"
+            ],
+            "Rarity": 0.5,
+            "Is City": true,
+            "Return": false,
+            "Min Distance": 4,
+            "Max Distance": 25,
+            "Min Time": 1,
+            "Max Time": 3,
+            "Min Destination Count": 1,
+            "Max Destination Count": 2,
+            "Preferred City Stats": [
+                "Wealth"
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "A very expensive and precious cargo arrived at port today!  We need it hastily delivered to [location].",
+            "Location Text": "You reach a the shady trading guild where you were directed to drop off the cargo. After a quick conservation with a bearded fellow, you are quickly kicked out.",
+            "Return Text": "",
+            "End Text": "Finished with your delivery, the strange fellow gives you your payment and tells you to get lost."
+        },
+        {
+            "Quest Giver": [
+                "Judge"
+            ],
+            "Titles": [
+                "Hunt Down Someone for Jury Duty"
+            ],
+            "Rarity": 0.25,
+            "Is City": true,
+            "Return": false,
+            "Min Distance": 4,
+            "Max Distance": 16,
+            "Min Time": 1,
+            "Max Time": 3,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "Oi! Someone is trying to get out of jury duty. But that can't happen. Not on my watch! JUSTICE MUST PROVAIL!",
+            "Location Text": "You seek down the man who tried to escape jury duty, and after a few... course words, he finally accepts defeat and begins packing his clothes for his trip to the court.",
+            "Return Text": "",
+            "End Text": "The judge is very pleased. Thanks to you the trial went through and JUSTICE PROVAILED!"
+        },
+        {
+            "Quest Giver": [
+                "Judge/Guard Captain"
+            ],
+            "Titles": [
+                "Hunt Down a Criminal"
+            ],
+            "Rarity": 0.5,
+            "Is City": true,
+            "Return": true,
+            "Min Distance": 4,
+            "Max Distance": 25,
+            "Min Time": 1,
+            "Max Time": 3,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "Some evil bloke has been commiting all sorts of crimes: theft, murder, and more. We need you to hunt 'em down. He was last seen at [location].",
+            "Location Text": "Making your way through the streets of [location] you hear a scream in the distance. You arrived just in time to stop the criminals next a crime: the theft of a local magic shop! Defeating the criminal in battle you chain them up.",
+            "Return Text": "Time to hand over this criminal to the law enforcement at [location]!",
+            "End Text": "The law enforcement is very pleased with your ability."
+        },
+        {
+            "Quest Giver": [
+                "Druid/Scholar"
+            ],
+            "Titles": [
+                "Seek Rare Plant"
+            ],
+            "Rarity": 0.25,
+            "Is City": false,
+            "Return": true,
+            "Min Distance": 3,
+            "Max Distance": 20,
+            "Min Time": 1,
+            "Max Time": 4,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Forest",
+                "Fields"
+            ],
+            "Nature Location Names": [
+                "Location of Strange Plant"
+            ],
+            "Start Text": "A mystical flower, with magical properties is rumoured to grow nearby! We need you to collect some for study.",
+            "Location Text": "In a small patch of longrass, you see a grandious red flower rise of the vegetation. This isn't gonna be fun to bring back to [location].",
+            "Return Text": "",
+            "End Text": "You arrive at [person]'s door sweaty from hauling the massive plant all the way back to [location]. Regardless they are very happy that you managed to find it before anyone else."
+        },
+        {
+            "Quest Giver": [
+                "Shaman",
+                "Minister",
+                "Clergyman",
+                "Diviner",
+                "Warlock",
+                "Priest",
+                "Wizard",
+                "Philospher",
+                "Cartographer",
+                "Explorer",
+                "Alchemist",
+                "Historian",
+                "Scholar",
+                "Witch"
+            ],
+            "Titles": [
+                "Retreive Important Artifact"
+            ],
+            "Rarity": 0.25,
+            "Is City": true,
+            "Return": true,
+            "Min Distance": 10,
+            "Max Distance": 100,
+            "Min Time": 2,
+            "Max Time": 14,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                "Scholardarity",
+                "Nature Magic",
+                "Holy Magic"
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "[person] has received word of an ancient and powerful artifact that was located by scholar at [location]. They need you to collect it from them.",
+            "Location Text": "You arrive at the scholar's abode, filled with dusty scrolls and ancient tombs. They give you the strange artifact: a glowing red gem. They tell you to be careful with it.",
+            "Return Text": "Gotta get the gem back to [location] before it does anything funny.",
+            "End Text": "The artifact seems to control you in a strange away. You don't want to give it away once you reach [person]'s study, but they convince you to part with it."
+        },
+        {
+            "Quest Giver": [
+                "King",
+                "Queen"
+            ],
+            "Titles": [
+                "Spy on a Nearby Town"
+            ],
+            "Rarity": 0.25,
+            "Is City": true,
+            "Return": true,
+            "Min Distance": 4,
+            "Max Distance": 16,
+            "Min Time": 1,
+            "Max Time": 4,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "Strange political occurences have been occuring at [location]. [person] needs you to ensure nothing too fishy is happenig.",
+            "Location Text": "You easily get into [location], and find a protest happening in the town square. They seem to be protesting against bread? Very strange.",
+            "Return Text": "Time to report your findings to [person]! You hear that they are quite impatient.",
+            "End Text": "You tell [person] about the bread protest. Nothing fishy: [person]'s nerves are calmed."
+        },
+        {
+            "Quest Giver": [
+                "Tax Collector"
+            ],
+            "Titles": [
+                "Collect Overdue Fees"
+            ],
+            "Rarity": 0.25,
+            "Is City": true,
+            "Return": true,
+            "Min Distance": 2,
+            "Max Distance": 30,
+            "Min Time": 2,
+            "Max Time": 7,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "A business man from [location] is avoiding paying his taxes. We need to you \"talk\" some sense into him.",
+            "Location Text": "You make your way to the shop where the tax avoider works. After a bit of convincing, he allows you to take some goods as tax.",
+            "Return Text": "With the fees in hand, its time to get back to claim your reward!",
+            "End Text": "[person] is a bit disapointed you didn't actually collected any money from the business man. Regardless, what you brought back was better than nothing."
+        },
+        {
+            "Quest Giver": [
+                "Chef"
+            ],
+            "Titles": [
+                "Get Ingredients"
+            ],
+            "Rarity": 0.5,
+            "Is City": false,
+            "Return": true,
+            "Min Distance": 2,
+            "Max Distance": 8,
+            "Min Time": 1,
+            "Max Time": 2,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Forest",
+                "Fields"
+            ],
+            "Nature Location Names": [
+                "Ingredient Pick-Up Location"
+            ],
+            "Start Text": "The annual cooking competition is about to begin and I need you to collect a special ingredient from [location]!",
+            "Location Text": "You meet with a local, sitting in the small hut in which they live. Popping open a barrel they show you a strange plant with an even stranger smell. You take a few pieces before hitting the road.",
+            "Return Text": "Time to get these strange ingredients back to [person]!",
+            "End Text": "The aroma of the plant grew on you as you travelled. You tasted some, but found it was very bitter. Regardless, the chef doesn't seem to care."
+        },
+        {
+            "Quest Giver": [
+                "Jeweler",
+                "Blacksmith",
+                "Mason",
+                "Armorer",
+                "Locksmith"
+            ],
+            "Titles": [
+                "Get Something from the Nearby Mines"
+            ],
+            "Rarity": 0.5,
+            "Is City": false,
+            "Return": true,
+            "Min Distance": 3,
+            "Max Distance": 16,
+            "Min Time": 1,
+            "Max Time": 8,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Mountain"
+            ],
+            "Nature Location Names": [
+                "Mine"
+            ],
+            "Start Text": "[person] needs you to collect some goods from a nearby mine. They are for a special project.",
+            "Location Text": "A dwarf meets with you at the head of the mine. They hand you a heavy package wrapped in grey fabric. You wonder whats inside.",
+            "Return Text": "The faster you get back to [location], the less time you'll have to spend carrying these heavy materials!",
+            "End Text": "You hand the heavy, grey package to [person]. They are extatic and slam the door in your face."
+        },
+        {
+            "Quest Giver": [
+                "Leatherworker",
+                "Butcher",
+                "Baker"
+            ],
+            "Titles": [
+                "Get Something from the Nearby Farms"
+            ],
+            "Rarity": 0.5,
+            "Is City": false,
+            "Return": true,
+            "Min Distance": 3,
+            "Max Distance": 16,
+            "Min Time": 1,
+            "Max Time": 8,
+            "Min Destination Count": 1,
+            "Max Destination Count": 3,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Fields"
+            ],
+            "Nature Location Names": [
+                "Farm"
+            ],
+            "Start Text": "A client has requested a luxury product, which I currently don't have the materials to make. I need you to collect them for me.",
+            "Location Text": "You collect the goods from the farm. The package is a bit bloody.",
+            "Return Text": "Gotta get back before someone stops you with this bloody package.",
+            "End Text": "You return with the packages of goods. [person] doesn't ask any questions about their quality, before handing you your payment."
+        },
+        {
+            "Quest Giver": [
+                "Lumberjack",
+                "Sailor",
+                "Woodcarver"
+            ],
+            "Titles": [
+                "Get Something from the Nearby Lumbermill"
+            ],
+            "Rarity": 0.5,
+            "Is City": false,
+            "Return": true,
+            "Min Distance": 3,
+            "Max Distance": 16,
+            "Min Time": 1,
+            "Max Time": 8,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Forest"
+            ],
+            "Nature Location Names": [
+                "Lumbermill"
+            ],
+            "Start Text": "I need some special hardwood for one of my projects. Only the local lumbermill carries it.",
+            "Location Text": "Collecting a few planks of hardwood from the mill you are eager to get back to [person].",
+            "Return Text": "Time to get this hardwood back to [person].",
+            "End Text": "Lugging the planks up the grand hill to [person]'s workshop, you wonder why they decided to put their workshop up there. You receive your compenstation for the hard work."
+        },
+        {
+            "Quest Giver": [
+                "Historian",
+                "Philsopher",
+                "Alchemist",
+                "Scholar",
+                "Wizard",
+                "Witch"
+            ],
+            "Titles": [
+                "Retreive Lore from Library"
+            ],
+            "Rarity": 0.5,
+            "Is City": true,
+            "Return": true,
+            "Min Distance": 4,
+            "Max Distance": 100,
+            "Min Time": 3,
+            "Max Time": 15,
+            "Min Destination Count": 1,
+            "Max Destination Count": 1,
+            "Preferred City Stats": [
+                "Scholardarity",
+                "Nature Magic",
+                "Holy Magic"
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "The local library is missing some much needed texts which I require for my studies. I need you to travel to [location] and get them for me.",
+            "Location Text": "Searching through the central library of [location], you finally find the collection of books that [person] needed. Time to deliver them!",
+            "Return Text": "Return to [location] to deliver the books and claim your reward!",
+            "End Text": "You deliver the books to [person]. The jump up and down with child like excitement as they start flipping through the pages!"
+        },
+        {
+            "Quest Giver": [
+                "Shaman",
+                "Minister",
+                "Clergyman",
+                "Diviner",
+                "Warlock",
+                "Priest"
+            ],
+            "Titles": [
+                "Spread the Word of God to a Nearby Town"
+            ],
+            "Rarity": 0.5,
+            "Is City": true,
+            "Return": false,
+            "Min Distance": 1,
+            "Max Distance": 8,
+            "Min Time": 2,
+            "Max Time": 12,
+            "Min Destination Count": 1,
+            "Max Destination Count": 4,
+            "Preferred City Stats": [
+                "Scholardarity",
+                "Nature Magic",
+                "Mining",
+                "Farming",
+                "Port",
+                "Lumber"
+            ],
+            "Destination Tile Types": [
+                ""
+            ],
+            "Nature Location Names": [
+                ""
+            ],
+            "Start Text": "[person]'s temple is looking pretty empty. They need help finding some new religious converts!",
+            "Location Text": "You preach to the crowd about the great power of God! Most of them boo you, but a few seem convinced.",
+            "Return Text": "",
+            "End Text": "You receive a letter from [person]. They are amazed at your skills, and converts have already started making their way to their temple. Your payment is attached."
+        },
+        {
+            "Quest Giver": [
+                "Shaman",
+                "Minister",
+                "Clergyman",
+                "Diviner",
+                "Warlock",
+                "Priest"
+            ],
+            "Titles": [
+                "Spread the Word of God to Nearby Locations"
+            ],
+            "Rarity": 0.5,
+            "Is City": false,
+            "Return": false,
+            "Min Distance": 1,
+            "Max Distance": 8,
+            "Min Time": 2,
+            "Max Time": 12,
+            "Min Destination Count": 1,
+            "Max Destination Count": 4,
+            "Preferred City Stats": [
+                ""
+            ],
+            "Destination Tile Types": [
+                "Forest",
+                "Fields",
+                "Mountain"
+            ],
+            "Nature Location Names": [
+                "Location in Need of God"
+            ],
+            "Start Text": "[person]'s temple is looking pretty empty. They need help finding some new religious converts!",
+            "Location Text": "You preach to the crowd about the great power of God! Most of them boo you, but a few seem convinced.",
+            "Return Text": "",
+            "End Text": "You receive a letter from [person]. They are amazed at your skills, and converts have already started making their way to their temple. Your payment is attached."
+        }
+    ]
+}

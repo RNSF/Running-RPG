@@ -1,7 +1,10 @@
 import 'dart:math';
 
 dynamic chooseWeighted(Map<dynamic, num> selectionMap){
-  var sumOfValues = selectionMap.values.reduce((a, b) => a + b);
+  var sumOfValues = 0.0;
+  for(var value in selectionMap.values){
+    sumOfValues += value;
+  }
   var rng = Random();
   var score = rng.nextDouble()*sumOfValues;
   var currentItem;

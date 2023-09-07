@@ -44,6 +44,8 @@ class HexTileSelector extends SvgComponent with Tappable, GestureHitboxes {
     anchor = Anchor.center;
     size = Vector2(sideLength, sqrt(3)/2*sideLength)*1.8;
     add(hitbox);
+    if(type == HexTileSelectorType.questView){
+    }
     return super.onLoad();
   }
 

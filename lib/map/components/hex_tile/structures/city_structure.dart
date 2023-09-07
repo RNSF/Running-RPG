@@ -1,6 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flame_svg/svg.dart';
+import 'package:running_game/pages/quest_page/models/quest_handler_model.dart';
 
+import '../../../../locator.dart';
 import '../hex_tile_decal.dart';
 import 'hex_tile_structure.dart';
 
@@ -16,6 +18,9 @@ class HexTileCity extends HexTileStructure{
   Future<void>? onLoad() async {
     svg = await Svg.load("images/world_map/structures/cities/S${spriteSize}City${spriteId}.svg");
     size = Vector2(300, 300);
+
+    locator.get<QuestHandlerModel>().createQuestBoard(mapCoordinates, name, description, stats);
+
     return super.onLoad();
   }
 
@@ -63,7 +68,6 @@ class HexTileCity extends HexTileStructure{
 }
 
 
-
 class CityStats {
   final double wealth;
   final double size;
@@ -101,6 +105,22 @@ class CityStats {
       farming: json["farming"].toDouble() ?? 0.0,
       lumber: json["lumber"].toDouble() ?? 0.0,
       mining: json["mining"].toDouble() ?? 0.0,
+    );
+  }
+  
+  factory CityStats.fromStringList(List<String> stringList){
+    const notIncludedValue = 0.0;
+    return CityStats(
+      wealth: stringList.contains("Wealth") ? 1.0 : notIncludedValue,
+      size: stringList.contains("Size") ? 1.0 : 0.0,
+      holyMagic: stringList.contains("Holy Magic") ? 1.0 : notIncludedValue,
+      natureMagic: stringList.contains("Nature Magic") ? 1.0 : notIncludedValue,
+      scholardarity: stringList.contains("Scholardarity") ? 1.0 : notIncludedValue,
+      military: stringList.contains("Military") ? 1.0 : notIncludedValue,
+      port: stringList.contains("Port") ? 1.0 : notIncludedValue,
+      farming: stringList.contains("Farming") ? 1.0 : notIncludedValue,
+      lumber: stringList.contains("Lumber") ? 1.0 : notIncludedValue,
+      mining: stringList.contains("Mining") ? 1.0 : notIncludedValue,
     );
   }
 
